@@ -10,6 +10,7 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
+
   const deleteToCart = (product) => {
     dispatch(remove(product));
   };
