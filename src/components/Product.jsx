@@ -18,7 +18,9 @@ const Product = () => {
   //   setProducts(response);
   // };
 
-  const { data: products } = useSelector((state) => state.product);
+  const { data: products, status } = useSelector((state) => state.product);
+
+  console.log(status);
 
   useEffect(() => {
     // getProducts();
@@ -29,9 +31,21 @@ const Product = () => {
     dispatch(add(product));
   };
 
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "rejected") {
+    return <p>false...</p>;
+  }
+
   const cards = products.map((product) => {
     return (
-      <div className="col-md-3 " style={{ marginBottom: "10px" }}>
+      <div
+        key={product.id}
+        className="col-md-3 "
+        style={{ marginBottom: "10px" }}
+      >
         <Card key={product.id} className="h-100 p-2">
           <div className="text-center">
             <Card.Img
